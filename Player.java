@@ -14,11 +14,15 @@ public class Player extends GameCharacter
      */
     public Player(){
         super();
-        turn(-90);
     }
     public void act()
     {
-        // Test für noch unklare Prgogrammteile
+        if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("left")){
+            goLeft(2);
+        }
+        else if(Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("right")){
+            goRight(2);
+        }
     }
     //Bewegung nach der x-Achse
 }
