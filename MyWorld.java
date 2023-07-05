@@ -3,7 +3,7 @@ public class MyWorld extends World {
     int pixelsOverBottomEdge; // for set up the position of the player over the bottom edge
     String status;
     int score;
-    
+
     public MyWorld() {
         super(720, 576, 1);
         pixelsOverBottomEdge = 50;
@@ -29,6 +29,9 @@ public class MyWorld extends World {
                 
             // // }
         // }
+        this.setBackground("images/backgroundImage.png");
+        Player player = new Player();
+        addObject(player, 360, 576-pixelsOverBottomEdge); // places the player horizontally in the middle and vertically pixelsOverBottomEdge over the bottom edge
+        player.setImage("images/playerImage.png");
     }
-    
 }
