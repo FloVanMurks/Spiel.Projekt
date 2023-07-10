@@ -11,6 +11,7 @@ public class Button extends Actor {
     public void act() {
         if (Greenfoot.mouseClicked(this) && function == "startButton") {
             System.out.println("startButton");
+            ((MyWorld)getWorld()).refreshStatus("signIn");
         }
         else if (Greenfoot.mouseClicked(this) && function == "leaderboard") {
             System.out.println("leaderboard");
