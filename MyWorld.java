@@ -2,6 +2,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World {
     String status;
     int score;
+    int playerX = 360;
+    int playerY = 526;
     
     // declaring of all buttons
     Button start = new Button("images/startButton.png", "mainMenu");
@@ -9,7 +11,7 @@ public class MyWorld extends World {
     Button signIn = new Button("images/zurueckButton.png", "signIn");
     Button backToStart = new Button("images/zurueckButton.png", "mainMenu");
     Button startGame  = new Button("images/startGameButton.png", "startGame");
-    // Player player1 = new Player(/*"images/playerImage"*/);
+    Player player1 = new Player(playerX, playerY);
     // Button ;
     // Button ;
     // Button ;
@@ -42,7 +44,7 @@ public class MyWorld extends World {
             removeObject(startGame);
             removeObject(backToStart);
             // add Player, Enemies, ... 
-            // addObject(player1, 360, 526);
+            addObject(player1, playerX, playerY);
         }
         else if (status == "gameOver") {
             System.out.println(status);
