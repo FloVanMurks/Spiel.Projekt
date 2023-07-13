@@ -1,3 +1,4 @@
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Button extends Actor {
@@ -9,39 +10,23 @@ public class Button extends Actor {
     }
     
     public void act() {
-        if (Greenfoot.mouseClicked(this) && function == "startButton") {
-            System.out.println("startButton");
-            ((MyWorld)getWorld()).refreshStatus("signIn");
-        }
-        else if (Greenfoot.mouseClicked(this) && function == "leaderboard") {
-            System.out.println("leaderboard");
-        }
-        else if (Greenfoot.mouseClicked(this) && function == "newAccount") {
-            System.out.println("newAccount");
-        }
-        else if (Greenfoot.mouseClicked(this) && function == "signIn") {
-            System.out.println("signIn");
-        }
+        if (Greenfoot.mouseClicked(this) && function == "leaderboard") {}
+        else if (Greenfoot.mouseClicked(this) && function == "newAccount") {}
+        else if (Greenfoot.mouseClicked(this) && function == "signIn") {}
         else if (Greenfoot.mouseClicked(this) && function == "mainMenu") {
-            System.out.println("mainMenu");
+            ((MyWorld)getWorld()).refreshStatus("mainMenu");
         }
         else if (Greenfoot.mouseClicked(this) && function == "startGame") {
-            System.out.println("startGame");
+            // System.out.println("startGame");
+            ((MyWorld)getWorld()).refreshStatus("inGame");
         }
-        else if (Greenfoot.mouseClicked(this) && function == "selectSpaceship") {
-            System.out.println("selectSpaceship");
-        }
-        else if (Greenfoot.mouseClicked(this) && function == "settings") {
-            System.out.println("settings");
-        }
-        else if (Greenfoot.mouseClicked(this) && function == "inGameMenu") {
-            System.out.println("in-game-menu");
-        }
-        else if (Greenfoot.mouseClicked(this) && function == "game") {
-            System.out.println("game");
-        }
+        else if (Greenfoot.mouseClicked(this) && function == "selectSpaceship") {}
+        else if (Greenfoot.mouseClicked(this) && function == "settings") {}
+        else if (Greenfoot.mouseClicked(this) && function == "inGameMenu") {}
+        else if (Greenfoot.mouseClicked(this) && function == "game") {}
         else if (Greenfoot.mouseClicked(this) && function == "gameOver") {
-            System.out.println("gameOver");
+            ((MyWorld)getWorld()).refreshStatus("gameOver");
         }
+        else if (Greenfoot.mouseClicked(this) && function == "chooseSpaceShipInGame") {}
     }
 }
