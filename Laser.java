@@ -9,16 +9,17 @@ public class Laser extends GameCharacter
 {
     boolean playerShooting;
     boolean isDead;
+    boolean testshot;
     /**
      * Due to the laser having to spawn at the right korridinates, x and y are
      * necessary. I use a boolean to determin, whether the enemy or the player
      * is shooting a lasor.
      */
-    public Laser(int posX, int posY, boolean PlayerShooting){
-        super();
-        setLocation(posX, posY);
+    public Laser(int posX, int posY, boolean PlayerShooting, boolean Testshot){
+        super(posX, posY);
         playerShooting = PlayerShooting;
         isDead = false;
+        testshot = Testshot;
     }
     /**
      * this is the part, where the Laser is moving towards an Object.
@@ -27,15 +28,18 @@ public class Laser extends GameCharacter
     {
         boolean touched = false;
         if(playerShooting){
-            if( touched != true){
+            if( touched = false){
                 goUp(2);
                 touched = isAtEdge();
                 if(isTouching(Enemy.class)){
                     removeTouching(Enemy.class);
+                    touched = true;
                 }
             }
             else{
-                isDead = true;
+                if(testshot = false){
+                    isDead = true;
+                }
             }
         }
         else{
@@ -44,10 +48,13 @@ public class Laser extends GameCharacter
                 touched = isAtEdge();
                 if(isTouching(Player.class)){
                     removeTouching(Player.class);
+                    touched = true;
                 }
             }
             else{
-                isDead = true;
+                if(testshot = false){
+                    isDead = true;
+                }
             }
         }
     }
