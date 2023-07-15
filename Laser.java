@@ -20,6 +20,7 @@ public class Laser extends GameCharacter
         playerShooting = PlayerShooting;
         isDead = false;
         testshot = Testshot;
+        setImage("images/laser 1.png");
     }
     /**
      * this is the part, where the Laser is moving towards an Object.

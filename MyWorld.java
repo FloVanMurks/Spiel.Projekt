@@ -47,6 +47,11 @@ public class MyWorld extends World {
             removeObject(backToStart);
             // add Player, Enemies, ... 
             addObject(player1, playerX, playerY);
+            for (int i = 0; i < 720; i = i + 15) {
+                Laser laser = new Laser(i, 100, false, false);
+                addObject(laser, i, 100);
+                addObject(player1, i, 400);
+            }
         }
         else if (status == "gameOver") {
             System.out.println(status);
@@ -54,5 +59,10 @@ public class MyWorld extends World {
             // Remove all Enemies
             // show Score
         }
+    }
+    
+    public void returnPlayer() {
+        addObject(player1, player1.getX(), player1.getY());
+        System.out.println("Returned Player");
     }
 }
