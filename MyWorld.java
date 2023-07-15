@@ -2,6 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World {
     String status;
     int score;
+    int lifes;
     int playerX = 360;
     int playerY = 526;
     
@@ -27,6 +28,7 @@ public class MyWorld extends World {
     
     public void refreshStatus(String status) {
         if (status == "started") {
+            lifes = 5;
             System.out.println(status);
             setBackground("images/backgroundImage.png");
             addObject(start, 360, 288); // positions the start-button in the middle of the screen
@@ -48,7 +50,7 @@ public class MyWorld extends World {
         }
         else if (status == "gameOver") {
             System.out.println(status);
-            // removeObject(player1)
+            removeObject(player1);
             // Remove all Enemies
             // show Score
         }
