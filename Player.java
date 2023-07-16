@@ -25,6 +25,9 @@ public class Player extends GameCharacter
     }
     public void act()
     {
+        if (((MyWorld)getWorld()).score == 0) {
+            ((MyWorld)getWorld()).refreshStatus("gameOver");
+        }
         //this cooldownlength says, how long the player needs to wait after
         //having shot in order to shoot again.
         //Currently the cooldown is at round about 0.25 seconds.
