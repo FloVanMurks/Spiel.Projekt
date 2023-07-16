@@ -10,6 +10,7 @@ public class Laser extends GameCharacter
     boolean playerShooting;
     boolean isDead;
     boolean testshot;
+    int movementSpeed;
     /**
      * The first two parameters are the position of the laser. The third
      * determines, who was shooting the laser. This is necessary because
@@ -29,6 +30,7 @@ public class Laser extends GameCharacter
         }
         isDead = false;
         testshot = Testshot;
+        movementSpeed = 5;
     }
     /**
      * Here, the laser will move up if it's fired by a player and down if it's
@@ -39,19 +41,24 @@ public class Laser extends GameCharacter
     public void act()
     {
         if(playerShooting){
-            goUp(3);
+            goUp(movementSpeed);
             isDead = isAtEdge();
             if(isTouching(Enemy.class)){
                 removeTouching(Enemy.class);
                 isDead = true;
+                ((MyWorld)getWorld()).score ++;
+                System.out.println("Score: " + ((MyWorld)getWorld()).score);
             }
         }
         else{
-            goDown(3);
+            goDown(movementSpeed);
             isDead = isAtEdge();
             if(isTouching(Player.class)){
-                removeTouching(Player.class);
+                // removeTouching(Player.class);
                 isDead = true;
+                ((MyWorld)getWorld()).lifes --;
+                System.out.println("Lifes: " +((MyWorld)getWorld()).lifes);
+                ((MyWorld)getWorld()).playerShot();
             }
         }
         //If the laser has turned dead, it will now despawn itself from the world.

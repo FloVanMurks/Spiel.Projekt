@@ -55,4 +55,11 @@ public class MyWorld extends World {
             // show Score
         }
     }
+    public void playerShot() {
+        int X = player1.getX();
+        int Y = player1.getY();
+        removeObject(player1);
+        player1 = new Player(X, Y);
+        addObject(player1, X, Y);
+    }
 }
