@@ -14,6 +14,7 @@ public class Player extends GameCharacter
      */
     List<Laser> lasers;
     int cooldown;
+    int playerSpeed;
     public Player(int posX, int posY){
         //Just like in Enemy, there needs to be an invincible laser for the
         //the list to not be null.
@@ -22,11 +23,15 @@ public class Player extends GameCharacter
         lasers = new ArrayList<>();
         Laser laser = new Laser(100,100,true,true);
         lasers.add(laser);
+        playerSpeed = 3;
     }
     public void act()
     {
         if (((MyWorld)getWorld()).lifes == 0) {
             ((MyWorld)getWorld()).refreshStatus("gameOver");
+        }
+        if(((MyWorld)getWorld()).enemyAmount == ((MyWorld)getWorld()).score){
+            ((MyWorld)getWorld()).addNewEnemieWave();
         }
         //this cooldownlength says, how long the player needs to wait after
         //having shot in order to shoot again.
@@ -38,11 +43,11 @@ public class Player extends GameCharacter
         //This checks, wheter the player wishes to move. He may only move left
         //or right, but he can control movement both by numb.key and wasd.
         if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("left")){
-            goLeft(2);//the Player is going 2 because after testing this
+            goLeft(playerSpeed);//the Player is going 2 because after testing this
             //turned out to be a good amount of movement.
         }
         else if(Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("right")){
-            goRight(2);
+            goRight(playerSpeed);
         }
         //Than the programm looks, whether the player wants to shoot. It does
         //that analogue to the enemy. He may but he may only do so, if the 

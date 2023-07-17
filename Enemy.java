@@ -13,6 +13,9 @@ public class Enemy extends GameCharacter
     List<Laser> lasers;
     int Xcord;
     int Ycord;
+    int movementArea;
+    int movementSpeedInArea;
+    int movementSpeedInAreaM;
     //There is one additional laser, to make sure the size of the array (which
     //sometimes needs to be checked) is never null.
     Laser laser;
@@ -22,12 +25,15 @@ public class Enemy extends GameCharacter
         Xcord=posX;
         Ycord=posY;
         lasers = new ArrayList<>();
+        movementArea = 5; // speed within its cell
+        movementSpeedInArea = 3; // the less the faster
+        movementSpeedInAreaM = 0;
         //Here, the laser is put into the array, so that it is never null.
         //Since the last parameter is true, it can never despawn.
         laser = new Laser(100,100,true,true);
         lasers.add(laser);
         //The Enemy needs to turn for the graphic to work.
-        turn(180);
+        // turn(180);
     }
     public void act()
     {
@@ -36,25 +42,31 @@ public class Enemy extends GameCharacter
         //position assigned in the start. This will prevent Enemies from
         //crashing into other enemies.
         double d = Math.random();
-        if(d<0.25){
-            if(getY() - 1 > Ycord - 3){
-                goUp(1);
+        if (movementSpeedInAreaM == movementSpeedInArea) {
+            if(d<0.25){
+                if(getY() - 1 > Ycord - 3){
+                    goUp(movementArea);
+                }
             }
+            else if(d<0.50){
+                if(getY() + 1 < Ycord + 2){
+                    goDown(movementArea);
+                }
+            }
+            else if(d<0.75){
+                if(getX() + 1 < Xcord + 2){
+                    goRight(movementArea);
+                }
+            }
+            else{
+                if(getX() - 1 > Xcord - 3){
+                    goLeft(movementArea);
+                }
+            }
+            movementSpeedInAreaM = 0;
         }
-        else if(d<0.50){
-            if(getY() + 1 < Ycord + 2){
-                goDown(1);
-            }
-        }
-        else if(d<0.75){
-            if(getX() + 1 < Xcord + 2){
-                goRight(1);
-            }
-        }
-        else{
-            if(getX() - 1 > Xcord - 3){
-                goLeft(1);
-            }
+        else {
+            movementSpeedInAreaM ++;
         }
         //Lasers can delete themselves off the world, but to save performance,
         //they also get removed from the list, if they touched the end of the
@@ -71,6 +83,7 @@ public class Enemy extends GameCharacter
         //When getting the order shoot(), the Enemy has a chance of 0.1% of
         //shooting. Othervise the game would be unplayable.
         double d = Math.random();
+        // System.out.println(d);
         if(d < 0.001){
             //If the Enemy decides to shoot, it will spawn a laser. It starts
             //at the Enemies exact position. Since the 3rd parameter is false,
