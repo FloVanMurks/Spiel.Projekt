@@ -71,6 +71,7 @@ public class Enemy extends GameCharacter
         //When getting the order shoot(), the Enemy has a chance of 0.1% of
         //shooting. Othervise the game would be unplayable.
         double d = Math.random();
+        // System.out.println(d);
         if(d < 0.001){
             //If the Enemy decides to shoot, it will spawn a laser. It starts
             //at the Enemies exact position. Since the 3rd parameter is false,
